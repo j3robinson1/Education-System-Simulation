@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %title MySite
+    %meta{:charset => "utf-8"}
+      %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+        %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+        = javascript_include_tag 'application', 'data-turbolinks-track' => true
+        = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+        = csrf_meta_tags
+  %body
+    //NAVBAR______________________
+    %nav.navbar.navbar-inverse
+      %li#fat-menu.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %i.btn.btn-default        
+            %span.glyphicon.glyphicon-th-list
+            %b.caret
+          %ul.dropdown-menu
+            = link_to root_path do
+              %span.glyphicon.glyphicon-home
+            - if user_signed_in?
+              %br
+              = link_to user_homeworks_path(current_user) do
+                %span.glyphicon.glyphicon-pencil
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Account
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", edit_user_registration_path
+              %li= link_to "Settings", '#'
+              %li.divider
+              %li
+                = link_to "Logout", destroy_user_session_path, :method => :delete
+        - elsif admin_signed_in?
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Account
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", edit_admin_registration_path
+              %li= link_to "Settings", '#'
+              %li.divider
+              %li
+                = link_to "Logout", destroy_admin_session_path, :method => :delete
+        - else
+          %i.container
+            = link_to "Sign up User", new_user_registration_path, class: "btn btn-large btn-primary"
+            = link_to "Sign up Admin", new_admin_registration_path, class: "btn btn-large btn-primary"
+            = link_to "Sign in", new_user_session_path, class: "btn btn-default"
+    //END NAVBAR______________________
+    %div.yield_container
+      = yield
