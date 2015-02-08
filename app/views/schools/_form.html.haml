@@ -1,0 +1,8 @@
+= form_for [@school, @classe] do |f|
+  =f.label :name
+  =f.text_field :name
+  %br
+  =f.label :location
+  =f.text_area :location
+  %br
+  =f.submit

@@ -1,0 +1,12 @@
+%h1 classe
+%h3
+  Name: #{@classe.name}
+  %br
+  Description: #{@classe.description}
+  %br
+  = link_to edit_school_class_path(@school, @classe) do
+    %i.btn.btn-default
+      %span.glyphicon.glyphicon-edit{class: 'glyph'}
+  = link_to school_class_path(@school, @classe), method: :delete do
+    %i.btn.btn-default
+      %span.glyphicon.glyphicon-trash{class: 'glyph'}

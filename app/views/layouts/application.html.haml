@@ -11,18 +11,23 @@
   %body
     //NAVBAR______________________
     %nav.navbar.navbar-inverse
-      %li#fat-menu.dropdown
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %i.btn.btn-default        
-            %span.glyphicon.glyphicon-th-list
-            %b.caret
-          %ul.dropdown-menu
-            = link_to root_path do
-              %span.glyphicon.glyphicon-home
-            - if user_signed_in?
-              %br
-              = link_to user_homeworks_path(current_user) do
-                %span.glyphicon.glyphicon-pencil
+      %ul.nav.navbar-nav.navbar-left
+        %li#fat-menu.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %i.btn.btn-default        
+              %span.glyphicon.glyphicon-th-list
+              %b.caret
+            %ul.dropdown-menu
+              = link_to root_path do
+                %span.glyphicon.glyphicon-home
+              - if user_signed_in?
+                %br
+                = link_to school_class_user_homeworks_path(current_user) do
+                  %span.glyphicon.glyphicon-pencil
+              - if admin_signed_in?
+                %br
+                = link_to schools_path do
+                  Schools
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li#fat-menu.dropdown

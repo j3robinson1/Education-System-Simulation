@@ -12,7 +12,14 @@ body {
 }
 nav.navbar.navbar-inverse {
   width: 100%;
+  background-color: #B5B09E;
 }
 .container {
   margin-right: 0;
+}
+.glyphicon.glyphicon-home, .glyphicon.glyphicon-pencil {
+  display: block;
+}
+.glyphicon.glyphicon-home:hover, .glyphicon.glyphicon-pencil:hover {
+color: black;
 }
