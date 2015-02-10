@@ -1,18 +1,25 @@
-%h1 classes
 - if admin_signed_in?
+  %h1 classes
   = link_to new_school_class_path(@school) do
     %span.glyphicon.glyphicon-plus
     class
-=form_tag school_classes_path, method: :get, class: "form-search", role: "search" do
-  .input-group
-    =text_field_tag 'search', params[:search], class: "form-control", id: "srch-term", placeholder: "Search"
-    .input-group-btn
-      %button.btn.btn-default{:style => "width:40px;"}
-        %span.glyphicon.glyphicon-search
-  %br
-  - @classes.each do |classe|
-    = link_to school_class_path(@school, classe) do
-      %i.btn.btn-default
-        = classe.name
+  =form_tag school_classes_path, method: :get, class: "form-search", role: "search" do
+    .input-group
+      =text_field_tag 'search', params[:search], class: "form-control", id: "srch-term", placeholder: "Search"
+      .input-group-btn
+        %button.btn.btn-default{:style => "width:40px;"}
+          %span.glyphicon.glyphicon-search
     %br
+    - @classes.each do |classe|
+      = link_to school_class_path(@school, classe) do
+        %i.btn.btn-default
+          = classe.name
+      %br
+      %br
+- if user_signed_in?
+  %h1 school
+  %h3
+    Name: #{@school.name}
+    %br
+    Description: #{@school.location}
     %br

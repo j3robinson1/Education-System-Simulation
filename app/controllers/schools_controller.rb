@@ -6,6 +6,10 @@ class SchoolsController < ApplicationController
       @schools = School.all
     end
   end 
+  def select
+    @user = current_user
+    @schools = School.all
+  end
   def new
     @school = School.new
   end

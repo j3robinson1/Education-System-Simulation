@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations"}
   resources 'schools' do
+    collection do
+      get 'select'
+    end
     resources 'classes' do
+      collection do
+        get 'select'
+      end
       resources 'users', only: [] do
         resources 'homeworks'
   end

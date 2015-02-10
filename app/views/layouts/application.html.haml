@@ -14,7 +14,7 @@
       %ul.nav.navbar-nav.navbar-left
         %li#fat-menu.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %i.btn.btn-default        
+            %i.btn.btn-default
               %span.glyphicon.glyphicon-th-list
               %b.caret
             %ul.dropdown-menu
@@ -22,7 +22,7 @@
                 %span.glyphicon.glyphicon-home
               - if user_signed_in?
                 %br
-                = link_to school_class_user_homeworks_path(current_user) do
+                = link_to school_classes_path(current_user.school_id) do
                   %span.glyphicon.glyphicon-pencil
               - if admin_signed_in?
                 %br

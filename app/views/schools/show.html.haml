@@ -2,7 +2,7 @@
 %h3
   Name: #{@school.name}
   %br
-  Description: #{@school.location}
+  Location: #{@school.location}
   %br
   = link_to edit_school_path(@school) do
     %i.btn.btn-default
@@ -11,6 +11,6 @@
     %i.btn.btn-default
       %span.glyphicon.glyphicon-trash{class: 'glyph'}
   %br
-  = link_to new_school_class_path(@school) do
+  = link_to school_classes_path(@school) do
     %i.btn.btn-default
-      %span.glyphicon.glyphicon-new{class: 'glyph'}
+      Show Class
