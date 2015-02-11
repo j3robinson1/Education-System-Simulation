@@ -1,6 +1,6 @@
 - if admin_signed_in?
   %h1 classes
-  = link_to new_school_class_path(@school) do
+  = link_to new_school_class_path(@school.id) do
     %span.glyphicon.glyphicon-plus
     class
   =form_tag school_classes_path, method: :get, class: "form-search", role: "search" do

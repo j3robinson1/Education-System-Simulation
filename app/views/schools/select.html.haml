@@ -3,3 +3,8 @@
   =f.select :school_id, options_for_select(@schools.map{|school| [school.name, school.id]})
   %br
   =f.submit
+%ul.dropdown-menu
+  - if user_signed_in?
+    %br
+    = link_to school_classes_path(current_user.school_id) do
+      %span.glyphicon.glyphicon-pencil

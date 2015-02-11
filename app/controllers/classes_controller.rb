@@ -8,11 +8,9 @@ class ClassesController < ApplicationController
     end
   end 
   def new
-    set_school
     @classe = Classe.new
   end
   def create
-    set_school
     @classe = Classe.new(classe_params)
     if @classe.save
       flash[:notice] = 'classe was successfully added.'
