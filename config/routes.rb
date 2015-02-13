@@ -2,13 +2,7 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users, :controllers => { :registrations => "registrations"}
   resources 'schools' do
-    collection do
-      get 'select'
-    end
-    resources 'classes' do
-      collection do
-        get 'select'
-      end
+    resources 'courses' do
       resources 'users', only: [] do
         resources 'homeworks'
   end
@@ -18,7 +12,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-root 'timeline#index'
+  root 'timeline#index'
+# end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

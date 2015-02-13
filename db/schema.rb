@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209173411) do
+ActiveRecord::Schema.define(version: 20150213182501) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150209173411) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "classes", force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
     t.datetime "created_at",              null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150209173411) do
     t.integer  "school_id",   limit: 4
   end
 
-  add_index "classes", ["school_id"], name: "index_classes_on_school_id", using: :btree
+  add_index "courses", ["school_id"], name: "index_courses_on_school_id", using: :btree
 
   create_table "homeworks", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150209173411) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
-  add_foreign_key "classes", "schools"
+  add_foreign_key "courses", "schools"
   add_foreign_key "homeworks", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "schools"

@@ -20,7 +20,12 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
+  <%- if resource.respond_to? :school_id%>
+    <div class="field">
+      <%=f.label :school_id %>
+      <%=f.select :school_id, options_for_select(@schools.map{|school| [school.name, school.id]}) %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
