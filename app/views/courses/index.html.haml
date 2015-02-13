@@ -32,7 +32,7 @@
           %span.glyphicon.glyphicon-search
     %br
     - @school.courses.each do |course|
-      = link_to school_course_path(@school, course) do
+      = link_to school_course_path(@school, course, current_user) do
         %i.btn.btn-default
           = course.name
       %br

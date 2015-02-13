@@ -8,7 +8,8 @@
     = link_to edit_school_course_path(@school, @course) do
       %i.btn.btn-default
         %span.glyphicon.glyphicon-edit{class: 'glyph'}
-    = link_to school_course_path(@school, @course), method: :delete do
+    = link_to school_course_path(@school, @course,current_user), method: :delete do
       %i.btn.btn-default
         %span.glyphicon.glyphicon-trash{class: 'glyph'}
-        
+  =link_to school_course_user_homeworks_path(@school, @course, current_user) do
+    Show Homeworks
