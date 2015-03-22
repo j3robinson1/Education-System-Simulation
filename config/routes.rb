@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations"}
   resources 'schools' do
     resources 'courses' do
-      resources 'users', only: [] do
         resources 'homeworks'
-  end
   end
   end
   # The priority is based upon order of creation: first created -> highest priority.

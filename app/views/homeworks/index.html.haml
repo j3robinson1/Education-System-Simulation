@@ -1,9 +1,9 @@
 %h1 homeworks
 - if admin_signed_in?
-  = link_to new_school_course_user_homework_path(@school, @course, current_user) do
+  = link_to new_school_course_homework_path(@school, @course) do
     %span.glyphicon.glyphicon-plus
     homework
-=form_tag school_course_user_homeworks_path, method: :get, class: "form-search", role: "search" do
+=form_tag school_course_homeworks_path(@school, @course), method: :get, class: "form-search", role: "search" do
   .input-group
     =text_field_tag 'search', params[:search], class: "form-control", id: "srch-term", placeholder: "Search"
     .input-group-btn
@@ -11,7 +11,7 @@
         %span.glyphicon.glyphicon-search
   %br
   - @homeworks.each do |homework|
-    = link_to school_course_user_homework_path(@school, @course, current_user, homework) do
+    = link_to school_course_homework_path(@school, @course, homework) do
       %i.btn.btn-default
         = homework.name
     %br

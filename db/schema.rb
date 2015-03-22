@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213182501) do
+ActiveRecord::Schema.define(version: 20150322160629) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20150213182501) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
+    t.integer  "course_id",   limit: 4
   end
 
+  add_index "homeworks", ["course_id"], name: "index_homeworks_on_course_id", using: :btree
   add_index "homeworks", ["user_id"], name: "index_homeworks_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
@@ -96,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150213182501) do
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
   add_foreign_key "courses", "schools"
+  add_foreign_key "homeworks", "courses"
   add_foreign_key "homeworks", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "schools"

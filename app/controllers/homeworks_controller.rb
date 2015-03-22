@@ -1,42 +1,42 @@
 class HomeworksController < ApplicationController
   def index
-    @user = current_user
+    set_school
+    set_course
     if !params[:search].blank?
       @homeworks = Homework.where("name LIKE ?", "%#{params[:search]}%")
     else
-      @homeworks = @user.homeworks
+      @homeworks = @course.homeworks.all
     end
   end 
   def new
-    @user = current_user
-    @users = User.all
+    set_course
+    set_school
     @homework = Homework.new
   end
   def create
-    @users = User.all
-    @user = current_user
-    @homework = @user.homeworks.build(homework_params)
+    set_school
+    set_course
+    @homework = @course.homeworks.create(homework_params)
     if @homework.save
       flash[:notice] = 'homework was successfully added.'
-      redirect_to user_homeworks_path(current_user)
+      redirect_to school_course_homeworks_path(@school, @course)
     else
       flash[:error] = "Event was NOT added."
       render :new
     end
   end
   def show
-    @users = User.all
-    @user = current_user
     set_homework
+    set_course
+    set_school
   end
   def edit
+    set_course
+    set_school
     set_homework
-    @users = User.all
-    @user = current_user
   end
   def update
     set_homework
-    @users = User.all
     @homework.update_attributes homework_params
     if @homework.update_attributes homework_params
       flash[:notice] = 'Homework was Successfully saved'
@@ -48,18 +48,26 @@ class HomeworksController < ApplicationController
   end
   def destroy
     set_homework
+    set_school
+    set_course
     @homework.destroy
-    redirect_to user_homeworks_path
+    redirect_to school_course_homeworks_path(@school, @course)
   end
 private
   def set_homework
     @homework = Homework.find params[:id]
   end
+  def set_school
+    @school = School.find params[:school_id]
+  end
+  def set_course
+    @course = Course.find params[:course_id]
+  end
   def homework_params
     params.require(:homework).permit(
       :name,
       :description,
-      :user_id
+      :course_id
       )
   end
 end
